@@ -34,6 +34,7 @@ Future<DateTime?> showOmniDateTimePicker({
   TextStyle? timeSpinnerHighlightedTextStyle,
   Radius? borderRadius,
   int? minutesInterval,
+  Widget Function(BuildContext context, Widget child)? builder,
 }) {
   return showGeneralDialog(
     context: context,
@@ -52,6 +53,29 @@ Future<DateTime?> showOmniDateTimePicker({
     barrierDismissible: true,
     barrierLabel: '',
     pageBuilder: (BuildContext context, anim1, anim2) {
+
+      if (builder != null) {
+        return builder(context, OmniDateTimePicker(
+          startInitialDate: startInitialDate,
+          startFirstDate: startFirstDate,
+          startLastDate: startLastDate,
+          type: type,
+          is24HourMode: is24HourMode,
+          isShowSeconds: isShowSeconds,
+          primaryColor: primaryColor,
+          backgroundColor: backgroundColor,
+          calendarTextColor: calendarTextColor,
+          tabTextColor: tabTextColor,
+          unselectedTabBackgroundColor: unselectedTabBackgroundColor,
+          unselectedTabTextColor: unselectedTabTextColor,
+          buttonTextColor: buttonTextColor,
+          timeSpinnerTextStyle: timeSpinnerTextStyle,
+          timeSpinnerHighlightedTextStyle: timeSpinnerHighlightedTextStyle,
+          borderRadius: borderRadius,
+          minutesInterval: minutesInterval,
+        ));
+      }
+
       return OmniDateTimePicker(
         startInitialDate: startInitialDate,
         startFirstDate: startFirstDate,
